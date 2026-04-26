@@ -55,10 +55,16 @@ TemporaryDependencyNodeTargetIdentifier=net10.0
 
 [sourceFiles]
 Abilities.cs
+BattleStats.cs
+IPokemon.cs
 obj/Debug/net10.0/
  -PkmnModellering.AssemblyInfo.cs
  -PkmnModellering.GlobalUsings.g.cs
  .NETCoreApp,Version=v10.0.AssemblyAttributes.cs
+Pokemon.cs
+PokemonData.cs
+PokemonMoves.cs
+PokemonTypes.cs
 Program.cs
 
 [metadataReferences]

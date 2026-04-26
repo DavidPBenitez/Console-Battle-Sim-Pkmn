@@ -1,0 +1,15 @@
+C:\Users\david\-PkmnModellering\bin\Debug\net10.0\-PkmnModellering.exe
+C:\Users\david\-PkmnModellering\bin\Debug\net10.0\-PkmnModellering.deps.json
+C:\Users\david\-PkmnModellering\bin\Debug\net10.0\-PkmnModellering.runtimeconfig.json
+C:\Users\david\-PkmnModellering\bin\Debug\net10.0\-PkmnModellering.dll
+C:\Users\david\-PkmnModellering\bin\Debug\net10.0\-PkmnModellering.pdb
+C:\Users\david\-PkmnModellering\obj\Debug\net10.0\-PkmnModellering.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\david\-PkmnModellering\obj\Debug\net10.0\-PkmnModellering.AssemblyInfoInputs.cache
+C:\Users\david\-PkmnModellering\obj\Debug\net10.0\-PkmnModellering.AssemblyInfo.cs
+C:\Users\david\-PkmnModellering\obj\Debug\net10.0\-PkmnModellering.csproj.CoreCompileInputs.cache
+C:\Users\david\-PkmnModellering\obj\Debug\net10.0\-PkmnModellering.sourcelink.json
+C:\Users\david\-PkmnModellering\obj\Debug\net10.0\-PkmnModellering.dll
+C:\Users\david\-PkmnModellering\obj\Debug\net10.0\refint\-PkmnModellering.dll
+C:\Users\david\-PkmnModellering\obj\Debug\net10.0\-PkmnModellering.pdb
+C:\Users\david\-PkmnModellering\obj\Debug\net10.0\-PkmnModellering.genruntimeconfig.cache
+C:\Users\david\-PkmnModellering\obj\Debug\net10.0\ref\-PkmnModellering.dll

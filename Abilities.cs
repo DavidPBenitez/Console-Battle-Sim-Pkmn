@@ -1,11 +1,11 @@
 using System;
 
-namespace PkmnAbilitySection
+namespace BattleSimulator
 {
     public abstract class Ability
     {
-        public string AbilityName { get; set; }
-        public string AbilityDescription { get; set; }
+        public string? AbilityName { get; set; }
+        public string? AbilityDescription { get; set; }
 
         public abstract void Activate();
 
