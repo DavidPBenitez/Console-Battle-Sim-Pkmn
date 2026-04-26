@@ -10,5 +10,6 @@ namespace BattleSimulator
     public int DefStage { get; set; }
     public int SpDefStage { get; set; }
     public int SpeStage { get; set; }
+    public bool IsAlive => CurrentHealth > 0;
     }
 }

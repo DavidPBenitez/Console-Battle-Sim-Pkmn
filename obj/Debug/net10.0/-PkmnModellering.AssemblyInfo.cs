@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("-PkmnModellering")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fac88492bc2eeec984d112140e4ada225bc1a9ec")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e90491a861b9454dffc84d67ae72cb9af0375815")]
 [assembly: System.Reflection.AssemblyProductAttribute("-PkmnModellering")]
 [assembly: System.Reflection.AssemblyTitleAttribute("-PkmnModellering")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

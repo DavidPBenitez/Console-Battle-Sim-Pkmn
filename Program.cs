@@ -6,7 +6,8 @@ namespace BattleSimulator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("🔥 💧 🌿 ⚡ ❄️ 👻 🐉");
+            
         }
+        
     }
 }

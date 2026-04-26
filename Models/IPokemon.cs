@@ -4,9 +4,11 @@ namespace BattleSimulator
 {
     public interface IPokemon
     {
-    string MonsterName { get; set; }
+    string Name { get; set; }
     PokemonType Type1 { get; set; }
     PokemonType? Type2 { get; set; }
+
+    Move[] Moves { get; set; }
 
     int MaxHP { get; set; }
     int Atk { get; set; }
