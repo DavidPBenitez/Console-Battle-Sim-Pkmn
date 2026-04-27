@@ -56,8 +56,11 @@ TemporaryDependencyNodeTargetIdentifier=net10.0
 [sourceFiles]
 Battle/
  AccuracyCheck.cs
+ BattleDisplay.cs
  BattleLoop.cs
  DamageCalc.cs
+ Opponent.cs
+ StatChangeHandler.cs
 Data/
  PokemonData.cs
  PokemonMoveData.cs
@@ -68,6 +71,8 @@ Models/
  Pokemon.cs
  PokemonMoves.cs
  PokemonTypes.cs
+ StatusConditions.cs
+ Trainer.cs
  TypeChart.cs
 obj/Debug/net10.0/
  -PkmnModellering.AssemblyInfo.cs
