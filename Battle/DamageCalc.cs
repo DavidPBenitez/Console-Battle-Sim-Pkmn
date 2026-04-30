@@ -8,6 +8,7 @@ public class DamageCalc
     {
         int attackStat;
         int defenseStat;
+        
         if(move.Category == MoveCategory.Physical)
         {
             attackStat = attacker.Atk;

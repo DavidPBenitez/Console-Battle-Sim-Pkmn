@@ -6,7 +6,7 @@ public class Opponent
 {
     private Random _random = new Random();
     
-    public Move BestMove(Pokemon opponent, Pokemon player)
+    public Move AutoSelectBestMove(Pokemon opponent, Pokemon player)
     {
         Move bestMove = null;
         int bestDamage = -1;

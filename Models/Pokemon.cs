@@ -11,17 +11,18 @@ public class Pokemon : IPokemon
 
     public Move[] Moves { get; set; } = new Move[4];
 
-    // Base stats:
+    // Stats for a Pokemon.
     public int MaxHP { get; set; }
     public int Atk { get; set; }
     public int SpAtk { get; set; }
     public int Def { get; set; }
     public int SpDef { get; set; }
     public int Spe { get; set; }
-
-    // in combat stats:
+    
+    // A Pokemons stats  during combat defined in BattleStats.cs
     public BattleStats BattleState { get; set; } = new BattleStats();
 
+    // Constructor for Pokemon
     public Pokemon(string name, PokemonType type1, PokemonType? type2, Move[] moves, int maxHP, int atk, int def, int spAtk, int spDef, int spe)
     {
         Name = name;

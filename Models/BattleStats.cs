@@ -4,7 +4,9 @@ namespace BattleSimulator;
 
 public class BattleStats
 {
+    // Status conditions stored here during a battle.
     public StatusCondition Status { get; set; } = StatusCondition.None;
+    public bool IsFlinched { get; set; } = false;
     public int SleepTurns { get; set; } = 0;
 
     // Limits stat changes to a maximum of +6 and minimum of -6.

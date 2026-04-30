@@ -6,37 +6,48 @@ public class BattleLoop
 {
     Trainer _player;
     Trainer _opponent;
+    Opponent _npc = new Opponent();
+    AccuracyCheck _accuracyCheck = new AccuracyCheck();
+    DamageCalc _damageCalc = new DamageCalc();
+
     public BattleLoop(Trainer player, Trainer opponent)
     {
         _player = player;
         _opponent = opponent;
     }
+
     public void BeginBattle()
     {
         while(_player.HasAlivePokemon() && _opponent.HasAlivePokemon())
         {
-            // speed determines which pokemon gets to go first.
             if(_player.ActivePokemon.Spe >= _opponent.ActivePokemon.Spe)
             {
                 PlayerTurn();
+                StatusHandler.ApplyEndOfTurn(_player.ActivePokemon);
                 OpponentTurn();
+                StatusHandler.ApplyEndOfTurn(_opponent.ActivePokemon);
             }
             else
             {
                 OpponentTurn();
+                StatusHandler.ApplyEndOfTurn(_opponent.ActivePokemon);
                 PlayerTurn();
+                StatusHandler.ApplyEndOfTurn(_player.ActivePokemon);
             }
         }        
     }
+
     private void PlayerTurn()
     {
+        if(!StatusHandler.TurnSkip(_player.ActivePokemon)) return;
+
         BattleDisplay.ShowBattleStatus(_player.ActivePokemon, _opponent.ActivePokemon);
         BattleDisplay.ShowMoves(_player.ActivePokemon);
-    
+
         Console.WriteLine("Choose move! [ 1 - 4 ]");
         string input = Console.ReadLine();
         Move selectedMove = null;
-    
+
         if(int.TryParse(input, out int choice) && choice >= 1 && choice <= 4)
         {
             selectedMove = _player.ActivePokemon.Moves[choice - 1];
@@ -46,23 +57,43 @@ public class BattleLoop
             Console.WriteLine("Invalid input! [ 1 - 4 ].");
             return;
         }
-    
-        AccuracyCheck accuracyCheck = new AccuracyCheck();
-        if(accuracyCheck.IsHit(selectedMove))
+
+        if(_accuracyCheck.MoveHitsEnemy(selectedMove)) // Checks if the random instance rolled favorably based on the moves accuracy.
         {
-            DamageCalc damageCalc = new DamageCalc();
-            int damage = damageCalc.CalculateDamage(_player.ActivePokemon, _opponent.ActivePokemon, selectedMove);
-            _opponent.ActivePokemon.BattleState.CurrentHealth -= damage;
-            Console.WriteLine($"{_player.ActivePokemon.Name} used {selectedMove.MoveName}! {damage} damage!");
+            int damage = _damageCalc.CalculateDamage(_player.ActivePokemon, _opponent.ActivePokemon, selectedMove); // Calculates damage based on ATK/SPATK against DEF/SPDEF respectively
+                                                                                                                    // + Type effectiveness multiplier ( 4.0f, 2.0f, 0.5f, 0.25f )
+
+            _opponent.ActivePokemon.BattleState.CurrentHealth -= damage; // reduces the health of targeted pokemon.
+
+            Console.WriteLine($"{_player.ActivePokemon.Name} used {selectedMove.MoveName}! {damage} damage!"); // Displays the action.
+
+            selectedMove.OnHitEffectChance?.Invoke(_opponent.ActivePokemon); // If the move applied an effect this line triggers.
         }
         else
         {
             Console.WriteLine($"{_player.ActivePokemon.Name}'s attack missed!");
         }
     }
+
     private void OpponentTurn()
     {
-        Opponent npc = new Opponent();
-        Move selectedMove = npc.BestMove(_opponent.ActivePokemon, _player.ActivePokemon);
+        if(!StatusHandler.TurnSkip(_opponent.ActivePokemon)) return;
+
+        Move selectedMove = _npc.AutoSelectBestMove(_opponent.ActivePokemon, _player.ActivePokemon); // selects the move that will deal the most amount of damage versus the players active pokemon.
+
+        if(_accuracyCheck.MoveHitsEnemy(selectedMove))
+        {
+            int damage = _damageCalc.CalculateDamage(_opponent.ActivePokemon, _player.ActivePokemon, selectedMove);
+
+            _player.ActivePokemon.BattleState.CurrentHealth -= damage;
+
+            Console.WriteLine($"{_opponent.ActivePokemon.Name} used {selectedMove.MoveName}! {damage} damage!");
+
+            selectedMove.OnHitEffectChance?.Invoke(_player.ActivePokemon);
+        }
+        else
+        {
+            Console.WriteLine($"{_opponent.ActivePokemon.Name}'s attack missed!");
+        }
     }
 }
