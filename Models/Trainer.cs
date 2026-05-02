@@ -36,6 +36,20 @@ public class Trainer
         }
         return null;
     }
+
+    public void SendNextPokemon()
+    {
+        for(int i = 0; i < Team.Length; i++)
+        {
+            if(Team[i] == NextAlivePokemon())
+            {
+                ActiveIndex = i;
+                Console.WriteLine($"Go! {ActivePokemon.Name}!");
+                return;
+            }
+        }
+    }
+    
     public void SwitchPokemon(int index)
     {
         if(index >= 0 && index < Team.Length && Team[index].BattleState.IsAlive)

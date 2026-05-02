@@ -24,6 +24,9 @@ public class BattleLoop
             {
                 PlayerTurn();
                 StatusHandler.ApplyEndOfTurn(_player.ActivePokemon);
+
+                if(!_opponent.ActivePokemon.BattleState.IsAlive) continue; //
+
                 OpponentTurn();
                 StatusHandler.ApplyEndOfTurn(_opponent.ActivePokemon);
             }
@@ -41,6 +44,7 @@ public class BattleLoop
     {
         if(!StatusHandler.TurnSkip(_player.ActivePokemon)) return;
 
+        Console.Clear();
         BattleDisplay.ShowBattleStatus(_player.ActivePokemon, _opponent.ActivePokemon);
         BattleDisplay.ShowMoves(_player.ActivePokemon);
 
@@ -86,6 +90,9 @@ public class BattleLoop
             int damage = _damageCalc.CalculateDamage(_opponent.ActivePokemon, _player.ActivePokemon, selectedMove);
 
             _player.ActivePokemon.BattleState.CurrentHealth -= damage;
+
+            Console.Clear();
+            BattleDisplay.ShowBattleStatus(_player.ActivePokemon, _opponent.ActivePokemon);
 
             Console.WriteLine($"{_opponent.ActivePokemon.Name} used {selectedMove.MoveName}! {damage} damage!");
 

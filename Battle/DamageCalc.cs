@@ -32,10 +32,10 @@ public class DamageCalc
         {
             typeEffectiveness *= TypeChart.GetEffectiveness(move.Type, defender.Type2.Value);   
         }
-        // Charizard using a STAB Flamethrower vs a normal type Pokemon: 90 * (129 / 120) * 1.5 = 145 total damage.
+        // Charizard using a STAB Flamethrower vs a normal type Pokemon: 90 * (129 / 120) * 1.5 / 2 = 72 total damage.
         // (e.g Fire vs Grass) 2x Effective damage: 145 * 2x = 290 total damage.
         // (e.g Fire vs Rock/Ground) 0.25x Resisted damage: 145 / 0.5x = 36.25 = 36 (Truncated due to integer behavior)
-        int damage = (int)((move.BaseDamage ?? 0) * ((float)attackStat / defenseStat) * stabMult * typeEffectiveness);
+        int damage = (int)((move.BaseDamage ?? 0) * ((float)attackStat / defenseStat) * stabMult * typeEffectiveness / 2);
         return damage; 
     }
 }

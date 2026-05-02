@@ -68,8 +68,8 @@ Models/
  Abilities.cs
  BattleStats.cs
  IPokemon.cs
+ Moves.cs
  Pokemon.cs
- PokemonMoves.cs
  PokemonTypes.cs
  StatusConditions.cs
  Trainer.cs

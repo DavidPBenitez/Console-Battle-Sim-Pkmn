@@ -24,7 +24,7 @@ public class Move
     public int? BaseDamage { get; set; }
     public int? Accuracy { get; set; }
 
-    // Holds an effect that triggers when this move hits but can also be null.
+    // Holds an effect that triggers when move gets used an is also nullable.
     public MoveExtraEffect? OnHitEffectChance { get; set; } = null;
 
     // For moves that raise or lower a Pokemons stats gets sent to BattleStats.cs

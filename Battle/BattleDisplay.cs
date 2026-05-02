@@ -7,9 +7,14 @@ public static class BattleDisplay
     // Loops over a Pokemon objects moves and writes them out.
     public static void ShowMoves(Pokemon pokemon)
     {
-        for(int i = 0; i < pokemon.Moves.Length; i++)
+        for(int i = 0; i < pokemon.Moves.Length; i += 2)
         {
-            Console.WriteLine($"{i + 1}. {pokemon.Moves[i].MoveName}");
+        Console.Write($"{i + 1}. {pokemon.Moves[i].MoveName,-15}");  // -15 är padding för mellanrum mellan 2 moves.
+        
+        if(i + 1 < pokemon.Moves.Length)
+            Console.WriteLine($"{i + 2}. {pokemon.Moves[i + 1].MoveName}");
+        else
+            Console.WriteLine();
         }
     }
     // Casts CurrentHealth as float in order to get a decimal value -
@@ -17,7 +22,7 @@ public static class BattleDisplay
     public static void ShowHealthBar(Pokemon pokemon)
     {
         float hpPercent = (float)pokemon.BattleState.CurrentHealth / pokemon.MaxHP;
-        int filledBlocks = (int)(hpPercent * 10);
+        int filledBlocks = Math.Max(0, (int)(hpPercent * 10));
         string block = hpPercent switch
         {
             > 0.75f => "🟩",

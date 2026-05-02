@@ -70,7 +70,7 @@ public static class PokemonData
         {
             MoveData.BodySlam,
             MoveData.RockTomb,
-            MoveData.Avalanche,
+            MoveData.Blizzard,
             MoveData.HammerArm
         },
         180, //HP
