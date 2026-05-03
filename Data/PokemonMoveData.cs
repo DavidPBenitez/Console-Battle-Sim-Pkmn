@@ -5,8 +5,39 @@ namespace BattleSimulator;
 public static class MoveData
 {
     // Status moves
+    public static Move Splash = new Move("Splash", PokemonType.Normal, MoveCategory.Status);
+
     public static Move Protect = new Move("Protect", PokemonType.Normal, MoveCategory.Status);
-    public static Move Rest = new Move("Rest", PokemonType.Psychic, MoveCategory.Status);
+    public static Move Rest = new Move("Rest", PokemonType.Psychic, MoveCategory.Status)
+    {
+        OnSelfEffect = user =>
+        {
+            user.BattleState.CurrentHealth = user.MaxHP;
+            user.BattleState.Status = StatusCondition.Sleep;
+            user.BattleState.SleepTurns = 2;
+        }
+    };
+    public static Move SwordsDance = new Move("Sword's Dance", PokemonType.Normal, MoveCategory.Status)
+    {
+        OnSelfEffect = user =>
+        {
+            user.BattleState.AtkStage += 2;
+            Console.WriteLine($"{user.Name}'s Attack rose sharply!");
+        }
+    };
+    public static Move ShellSmash = new Move("Shell smash", PokemonType.Normal, MoveCategory.Status)
+    {
+        OnSelfEffect = user =>
+        {
+            user.BattleState.AtkStage += 2;
+            user.BattleState.SpAtkStage += 2;
+            user.BattleState.SpeedStage += 2;
+            user.BattleState.DefStage -= 1;
+            user.BattleState.SpDefStage -= 1;
+            Console.WriteLine($"{user.Name}'s Defense and Sp. Defense was lowered!");
+            Console.WriteLine($"{user.Name}'s Attack, Sp. Attack and Speed rose sharply!");
+        }
+    };
 
     // Normal moves
     public static Move BodySlam = new Move("Body Slam", PokemonType.Normal, MoveCategory.Physical, 85, 100)
@@ -14,7 +45,7 @@ public static class MoveData
         OnHitEffectChance = target => 
         {
             // 30% chance of inflicting Paralysis.
-            if(EffectChance.Instance.Next(0, 100) < 30)
+            if(target.BattleState.Status == StatusCondition.None && EffectChance.Instance.Next(0, 100) < 30)
             { target.BattleState.Status = StatusCondition.Paralyze; }
         }
     };
@@ -25,7 +56,7 @@ public static class MoveData
     {
         OnHitEffectChance = target => 
         {
-            if(EffectChance.Instance.Next(0, 100) < 10)
+            if(target.BattleState.Status == StatusCondition.None && EffectChance.Instance.Next(0, 100) < 10)
             { target.BattleState.Status = StatusCondition.Burn; }
         }
     };
@@ -33,7 +64,7 @@ public static class MoveData
     {
         OnHitEffectChance = target => 
         {
-            if(EffectChance.Instance.Next(0, 100) < 10)
+            if(target.BattleState.Status == StatusCondition.None && EffectChance.Instance.Next(0, 100) < 10)
             { target.BattleState.Status = StatusCondition.Burn; }
         }
     };
@@ -41,7 +72,7 @@ public static class MoveData
     {
         OnHitEffectChance = target => 
         {
-            if(EffectChance.Instance.Next(0, 100) < 10)
+            if(target.BattleState.Status == StatusCondition.None && EffectChance.Instance.Next(0, 100) < 10)
             { target.BattleState.Status = StatusCondition.Burn; }
         }
     };
@@ -53,7 +84,7 @@ public static class MoveData
     {
         OnHitEffectChance = target => 
         {
-            if(EffectChance.Instance.Next(0, 100) < 30)
+            if(target.BattleState.Status == StatusCondition.None && EffectChance.Instance.Next(0, 100) < 30)
             { target.BattleState.Status = StatusCondition.Burn; }
         }
     };
@@ -65,20 +96,20 @@ public static class MoveData
         OnHitEffectChance = target => 
         {
             // 10% chance to lower Special Defense by 1 stage.
-            if(EffectChance.Instance.Next(0, 100) < 10)
+            if(target.BattleState.Status == StatusCondition.None && EffectChance.Instance.Next(0, 100) < 10)
             { target.BattleState.SpDefStage -= 1; }
         }
     };
 
     //Electric moves
-    public static Move ThunderPunch = new Move("Thunder Punch", PokemonType.Grass, MoveCategory.Physical, 75, 100);
+    public static Move ThunderPunch = new Move("Thunder Punch", PokemonType.Electric, MoveCategory.Physical, 75, 100);
 
     // Flying moves
     public static Move AirSlash = new Move("Air Slash", PokemonType.Flying, MoveCategory.Special, 75, 95)
     {
         OnHitEffectChance = target => 
         {
-            if(EffectChance.Instance.Next(0, 100) < 30)
+            if(target.BattleState.Status == StatusCondition.None && EffectChance.Instance.Next(0, 100) < 30)
             { target.BattleState.Status = StatusCondition.Flinch; }
         }
     };
@@ -88,7 +119,7 @@ public static class MoveData
     {
         OnHitEffectChance = target => 
         {
-            if(EffectChance.Instance.Next(0, 100) < 30)
+            if(target.BattleState.Status == StatusCondition.None && EffectChance.Instance.Next(0, 100) < 30)
             { target.BattleState.Status = StatusCondition.Poison; }
         }
     };
@@ -99,7 +130,7 @@ public static class MoveData
         OnHitEffectChance = target => 
         {
             // 10% chance to lower Special Defense by 1 stage.
-            if(EffectChance.Instance.Next(0, 100) < 10)
+            if(target.BattleState.Status == StatusCondition.None && EffectChance.Instance.Next(0, 100) < 10)
             { target.BattleState.SpDefStage -= 1; }
         }
     };
@@ -116,7 +147,7 @@ public static class MoveData
     {
         OnHitEffectChance = target => 
         {
-            if(EffectChance.Instance.Next(0, 100) < 10)
+            if(target.BattleState.Status == StatusCondition.None && EffectChance.Instance.Next(0, 100) < 10)
             { target.BattleState.Status = StatusCondition.Freeze; }
         }
     };
@@ -129,7 +160,7 @@ public static class MoveData
     {
         OnHitEffectChance = target => 
         {
-            if(EffectChance.Instance.Next(0, 100) < 30)
+            if(target.BattleState.Status == StatusCondition.None && EffectChance.Instance.Next(0, 100) < 30)
             { target.BattleState.Status = StatusCondition.Paralyze; }
         }
     };

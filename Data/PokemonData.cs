@@ -99,4 +99,42 @@ public static class PokemonData
         130, //Sp. Defense
         50 // Speed
     );
+    public static Pokemon PunchingBag = new Pokemon
+    (
+        "Dummy", 
+        PokemonType.Normal,
+        null,  
+        new Move[]
+        {
+            MoveData.Splash,
+            MoveData.Splash,
+            MoveData.Splash,
+            MoveData.Splash
+        },
+        10000, //HP
+        1, //Attack
+        100, //Defense
+        1, //Sp. Attack
+        100, //Sp. Defense
+        1 // Speed
+    );
+    public static Pokemon Blastoise = new Pokemon
+    (
+        "Blastoise", 
+        PokemonType.Water, 
+        null, 
+        new Move[]
+        {
+            MoveData.HydroPump,
+            MoveData.Scald,
+            MoveData.ShellSmash,
+            MoveData.BodySlam
+        },
+        154, //HP
+        83, //Attack
+        100, //Defense
+        85, //Sp. Attack
+        105, //Sp. Defense
+        78 // Speed
+    );
 }

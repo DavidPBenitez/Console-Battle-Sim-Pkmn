@@ -90,20 +90,4 @@ public static class StatusHandler
 
         return true;
     }
-
-    // Burn causes attack stat to be halved.
-    public static int GetAtkStat(Pokemon attacker, int attackStat)
-    {
-        if(attacker.BattleState.Status == StatusCondition.Burn)
-            return attackStat / 2;
-        return attackStat;
-    }
-
-    // Paralysis causes speed stat to be halved.
-    public static int GetSpeStat(Pokemon pokemon, int speStat)
-    {
-        if(pokemon.BattleState.Status == StatusCondition.Paralyze)
-            return speStat / 2;
-        return speStat;
-    }
 }
